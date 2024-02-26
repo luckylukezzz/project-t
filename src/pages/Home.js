@@ -5,19 +5,30 @@ import {useState,useEffect} from 'react';
 const Home = () => {
 
     const [showModal, setShowModal] = useState(false);
+    const [isSignUp, setIsSignUp] = useState(true);
     const authToken = false
 
 
     const handleClick = () => {
         console.log('clicked at home');
-        setShowModal(true); 
+        setShowModal(true);
+        setIsSignUp(true); 
     }
     useEffect(() => {
       console.log(showModal);
       }, [showModal]);
+
+    useEffect(() => {
+    console.log("is sign up is : " , isSignUp );
+    }, [isSignUp]);
     return ( 
         <div className="overlay">
-        <Navbar minimal={false} authToken={authToken} setShowModal={setShowModal} showModal={showModal}/>
+        <Navbar 
+            minimal={false} 
+            authToken={authToken} 
+            setShowModal={setShowModal} 
+            showModal={showModal} 
+            setIsSignUp={setIsSignUp}/>
         
         <div className="home">
                 <h1 className="primary-title">Fast Date®</h1>
@@ -26,7 +37,7 @@ const Home = () => {
                 </button>
         
         {showModal && (
-            <AuthModal setShowModal={setShowModal}/>
+            <AuthModal setShowModal={setShowModal} isSignUp={isSignUp} setIsSignUp={setIsSignUp}/>
         )}
 
         </div>

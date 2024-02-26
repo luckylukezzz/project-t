@@ -1,6 +1,6 @@
 import { useState } from "react"
 
-const AuthModal = ({setShowModal}) => {
+const AuthModal = ({setShowModal , isSignUp , setIsSignUp}) => {
     const [email, setEmail] = useState(null)
     const [password, setPassword] = useState(null)
     const [confirmPassword, setConfirmPassword] = useState(null)
@@ -12,9 +12,17 @@ const AuthModal = ({setShowModal}) => {
 
     const handleSubmit = (e) => {
         e.preventDefault()
+
+        try {
+            if (isSignUp && (password !== confirmPassword)) {
+                setError('Passwords need to match!')
+            }
+            console.log("need to end post req");
+        } catch (e) {
+            console.log(e.message);
+        }
     };
 
-    const isSignUp = true;
 
     return ( 
 
@@ -50,6 +58,8 @@ const AuthModal = ({setShowModal}) => {
             />}
             <input className="secondary-button" type="submit"/>
             <p>{error}</p>
+            <hr/>
+            <h2>Get the app</h2>
         </form>
         </div>
         
