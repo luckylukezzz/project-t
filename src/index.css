@@ -13,6 +13,12 @@ html,body{
 h2 {
   font-style: italic;
 }
+
+.primary-title {
+  font-size: 90px;
+  color: rgb(255, 255, 255);
+}
+
 .primary-button {
   color: #fff;
   text-transform: uppercase;
@@ -55,7 +61,7 @@ body{
   text-align: center;
 }
 
-/* ______________navbar____________________ */
+/*--------navbar-------- */
 nav {
   width: 100%;
   display: flex;
@@ -96,9 +102,12 @@ nav .logo-container .logo {
           to bottom,
           rgba(0, 0, 0, 0.65) 0%,
           rgba(0, 0, 0, 0) 100%
-  )
+  ),url('./images/image.png')
 }
 
+.home {
+  margin-top: 30vh;
+}
 
 /*-------- Auth Modal --------*/
 .auth-modal {
@@ -129,4 +138,97 @@ nav .logo-container .logo {
   padding: 8px;
   margin: 8px;
   font-size: 17px;
+}
+
+
+/*-------- OnBoarding Page --------*/
+.onboarding {
+  border-top: solid 1px rgb(213, 213, 213);
+}
+
+.onboarding form {
+  display: flex;
+  justify-content: center;
+}
+
+.onboarding form section {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  width: 35%;
+  text-align: start;
+}
+
+.onboarding form input {
+  padding: 15px 30px;
+  margin: 10px 0;
+  font-size: 15px;
+  border: solid 2px rgb(219, 219, 219);
+  border-radius: 10px;
+}
+
+.onboarding form label {
+  margin: 10px 0;
+}
+
+.onboarding form .multiple-input-container {
+  display: flex;
+  flex-direction: row;
+}
+
+.onboarding form input::-webkit-outer-spin-button,
+.onboarding form input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.onboarding form .multiple-input-container input {
+  margin-right: 10px;
+}
+
+.onboarding form .multiple-input-container label {
+  padding: 10px;
+  border: solid 2px rgb(144, 144, 144);
+  border-radius: 10px;
+  transition: all 0.3s;
+  margin-right: 10px;
+}
+
+.onboarding form input[type=radio] {
+  display: none;
+}
+
+.onboarding form input[type=number] {
+  width: 10%;
+}
+.onboarding form input[type=checkbox] {
+  width: 10%;
+}
+.onboarding form input[type=radio]:checked + label {
+  border: solid 2px rgb(221, 39, 22);
+}
+
+.onboarding form input[type=submit]:hover {
+  border:solid 2px #fff;
+  color: #fff;
+  background: rgb(145,15,204);
+  background: -moz-linear-gradient(12deg, rgba(145,15,204,1) 0%, rgba(158,27,184,1) 11%, rgba(255,34,206,1) 100%);
+  background: -webkit-linear-gradient(8deg, rgba(145,15,204,1) 0%, rgba(158,27,184,1) 11%, rgba(255,34,206,1) 100%);
+  background: linear-gradient(8deg, rgba(145,15,204,1) 0%, rgba(158,27,184,1) 11%, rgba(255,34,206,1) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#910fcc",endColorstr="#ff22ce",GradientType=1);
+}
+
+.onboarding form input[type=submit]:active {
+  background: rgb(145,15,204);
+  background: linear-gradient(350deg, rgba(145,15,204,1) 0%, rgba(158,27,184,1) 32%, rgba(255,34,206,1) 100%);
+}
+
+.onboarding form .photo-container img {
+  width: 100%
+}
+
+.show-gender-group {
+  display:flex;
+  padding: 20px 0px;
+  
 }
