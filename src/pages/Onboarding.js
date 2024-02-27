@@ -121,7 +121,7 @@ const Onboarding = () => {
                         </div>
 
                         <div className='show-gender-group'>
-                        <label htmlFor="show-gender">Show Gender on my Profile</label>
+                        <label htmlFor="show-gender" className="show-gender">Show Gender on my Profile</label>
 
                         <input
                             id="show-gender"
@@ -130,6 +130,7 @@ const Onboarding = () => {
                             onChange={handleChange}
                             checked={formData.show_gender}
                         />
+                        
                         </div>
 
                         <label>Interested in:</label>
@@ -176,12 +177,12 @@ const Onboarding = () => {
                             onChange={handleChange}
                         />
 
-                        <input type="submit"/>
+                        <input type="submit" className='submit'/>
                     </section>
 
                     <section>
 
-                        <label htmlFor="url">Profile Photo</label>
+                        <label htmlFor="url">Profile Photo Link</label>
                         <input
                             type="url"
                             name="url"

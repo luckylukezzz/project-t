@@ -29,7 +29,7 @@ h2 {
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#910fcc",endColorstr="#ff22ce",GradientType=1);
   padding: 12px 30px;
   border-radius: 30px;
-  border: none;
+  border: solid 1px #fff;
   font-size: 15px;
 }
 
@@ -204,10 +204,16 @@ nav .logo-container .logo {
 .onboarding form input[type=checkbox] {
   width: 10%;
 }
-.onboarding form input[type=radio]:checked + label {
-  border: solid 2px rgb(221, 39, 22);
-}
 
+.onboarding form input[type=radio]:checked + label {
+  border: solid 2px rgb(255, 255, 255);
+  color: #fff;
+  background: rgb(145,15,204);
+  background: linear-gradient(350deg, rgba(145,15,204,1) 0%, rgba(158,27,184,1) 32%, rgba(255,34,206,1) 100%);
+}
+.onboarding form input[type=submit]{
+  font-size: 18px;
+}
 .onboarding form input[type=submit]:hover {
   border:solid 2px #fff;
   color: #fff;
