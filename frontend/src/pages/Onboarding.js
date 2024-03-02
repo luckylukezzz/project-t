@@ -1,8 +1,15 @@
 import Navbar from '../components/Navbar';
 import { useState } from 'react';
-const Onboarding = () => {
+import {useCookies} from 'react-cookie'
+import {useNavigate} from 'react-router-dom'
+import axios from 'axios'
 
+
+const Onboarding = () => {
+    const [cookies, setCookie, removeCookie] = useCookies(null)
+    
     const [formData, setFormData] = useState({
+        user_id: cookies.UserId,
         first_name: "",
         dob_day: "",
         dob_month: "",
@@ -16,8 +23,20 @@ const Onboarding = () => {
 
     })
 
-    const handleSubmit = (e) => {
+    let navigate = useNavigate()
+
+    const handleSubmit = async (e) => {
         console.log('submitted')
+        e.preventDefault()
+        try {
+            const response = await axios.put('http://localhost:8000/user', {formData})
+            console.log(response)
+            const success = response.status === 200
+            if (success) navigate('/dashboard')
+        } catch (err) {
+            console.log(err)
+        }
+
     }
 
     const handleChange = (e) => {
