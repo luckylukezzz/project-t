@@ -65,8 +65,12 @@ const Dashboard = () => {
       }
 
     return (
+      <>
+      {user &&
       <div className = "dashboard">
-        <ChatContainer/>
+    
+        <ChatContainer user={user}/>
+       
         <div className="swipe-container">
           <div className='card-container'>
             {characters.map((character) =>
@@ -82,7 +86,8 @@ const Dashboard = () => {
             </div>
           </div>
         </div>
-      </div> 
+      </div> }
+      </>
         );
 }
  
