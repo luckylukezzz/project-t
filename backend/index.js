@@ -130,21 +130,21 @@ app.put('/user', async (req, res) => {
     }
 })
 
-app.get("/users", async (req,res) => {
-    const client = new MongoClient(uri);
+// app.get("/users", async (req,res) => {
+//     const client = new MongoClient(uri);
 
-    try{
-        await client.connect();
-        const db =client.db("app-data");
-        const users = db.collection("users");
+//     try{
+//         await client.connect();
+//         const db =client.db("app-data");
+//         const users = db.collection("users");
 
-        const returnedUsers = await users.find().toArray();
-        res.send(returnedUsers);
+//         const returnedUsers = await users.find().toArray();
+//         res.send(returnedUsers);
 
-    }finally{
-        await client.close();
-    }
-})
+//     }finally{
+//         await client.close();
+//     }
+// })
 
 
 // Get individual user
@@ -211,5 +211,36 @@ app.put('/addmatch', async (req, res) => {
         await client.close()
     }
 })
+
+
+app.get('/users', async (req, res) => {
+    const client = new MongoClient(uri)
+    const userIds = JSON.parse(req.query.userIds)
+    console.log(userIds)
+    try {
+        await client.connect()
+        const database = client.db('app-data')
+        const users = database.collection('users')
+
+        const pipeline =
+            [
+                {
+                    '$match': {
+                        'user_id': {
+                            '$in': userIds
+                        }
+                    }
+                }
+            ]
+
+        const foundUsers = await users.aggregate(pipeline).toArray()
+
+        res.json(foundUsers)
+
+    } finally {
+        await client.close()
+    }
+})
+
 
 app.listen(PORT, () => console.log("running on port " + PORT ));

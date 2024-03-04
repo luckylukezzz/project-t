@@ -12,7 +12,7 @@ const ChatContainer = ({user}) => {
           
         </div>
 
-        <MatchesDisplay/>
+        <MatchesDisplay matches= {user.matches}/>
         <ChatDisplay/>
 
 
