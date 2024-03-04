@@ -166,5 +166,50 @@ app.get('/user', async (req, res) => {
     }
 })
 
+// Get all the Gendered Users in the Database
+app.get('/gendered-users', async (req, res) => {
+    const client = new MongoClient(uri)
+    const genderInterest = req.query.gender
+    if (genderInterest == "men"){
+        genderIdentity = ["man"]
+    }else if (genderInterest == "women"){
+        genderIdentity = ["woman"]
+    }else{
+        genderIdentity = ["man", "woman","more"]
+    }
+
+    try {
+        await client.connect()
+        const database = client.db('app-data')
+        const users = database.collection('users')
+        const query = {gender_identity: {$in: genderIdentity}}
+        const foundUsers = await users.find(query).toArray()
+        res.json(foundUsers)
+
+    } finally {
+        await client.close()
+    }
+})
+
+
+app.put('/addmatch', async (req, res) => {
+    const client = new MongoClient(uri)
+    const {userId, matchedUserId} = req.body
+
+    try {
+        await client.connect()
+        const database = client.db('app-data')
+        const users = database.collection('users')
+
+        const query = {user_id: userId}
+        const updateDocument = {
+            $push: {matches: {user_id: matchedUserId}}
+        }
+        const user = await users.updateOne(query, updateDocument)
+        res.send(user)
+    } finally {
+        await client.close()
+    }
+})
 
 app.listen(PORT, () => console.log("running on port " + PORT ));
